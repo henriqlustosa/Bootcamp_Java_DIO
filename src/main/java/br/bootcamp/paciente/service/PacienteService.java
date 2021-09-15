@@ -3,15 +3,21 @@ package br.bootcamp.paciente.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.bootcamp.paciente.dto.request.PacienteDto;
 import br.bootcamp.paciente.dto.response.MessageResponseDto;
 import br.bootcamp.paciente.entity.Paciente;
 import br.bootcamp.paciente.exception.PacienteNotFoundException;
 import br.bootcamp.paciente.mapper.PacienteMapper;
 import br.bootcamp.paciente.repository.PacienteRepository;
+import lombok.AllArgsConstructor;
 
 
 
+@Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PacienteService {
 	
 	

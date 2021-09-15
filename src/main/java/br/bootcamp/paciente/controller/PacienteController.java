@@ -26,12 +26,12 @@ import lombok.AllArgsConstructor;
 
 
 @RestController
-@RequestMapping("/api/v1/paciente")
+@RequestMapping("/paciente")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PacienteController {
 	
 	 private PacienteService pacienteService;
-	@PostMapping
+	    @PostMapping
 	    @ResponseStatus(HttpStatus.CREATED)
 	    public MessageResponseDto createPerson(@RequestBody @Valid PacienteDto PacienteDto) {
 	        return pacienteService.createPaciente(PacienteDto);
