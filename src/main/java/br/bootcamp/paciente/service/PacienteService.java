@@ -3,6 +3,7 @@ package br.bootcamp.paciente.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,25 +13,25 @@ import br.bootcamp.paciente.entity.Paciente;
 import br.bootcamp.paciente.exception.PacienteNotFoundException;
 import br.bootcamp.paciente.mapper.PacienteMapper;
 import br.bootcamp.paciente.repository.PacienteRepository;
-import lombok.AllArgsConstructor;
+
 
 
 
 @Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PacienteService {
 	
 	
-	
+		@Autowired
 	  	private PacienteRepository pacienteRepository;
-
-	    private final PacienteMapper pacienteMapper = PacienteMapper.INSTANCE;
-
+	
+		ModelMapper pacienteMapper = new ModelMapper();
+		
+		
 	    public MessageResponseDto createPaciente(PacienteDto pacienteDto) {
 	    	
-	    	Paciente personToSave = pacienteMapper.toModel(pacienteDto);
+	    	Paciente pacienteToSave = pacienteMapper.map(pacienteDto,Paciente.class);
 
-	        Paciente savedPerson = pacienteRepository.save(personToSave);
+	        Paciente savedPerson = pacienteRepository.save(pacienteToSave);
 	        return createMessageResponse(savedPerson.getId(), "Created person with ID ");
 	    }
 
@@ -40,14 +41,14 @@ public class PacienteService {
 	    public List<PacienteDto> listAll() {
 	        List<Paciente> allPeople = pacienteRepository.findAll();
 	        return allPeople.stream()
-	                .map(pacienteMapper::toDTO)
+	        		.map(t -> pacienteMapper.map(t, PacienteDto.class))
 	                .collect(Collectors.toList());
 	    }
 
 	    public PacienteDto findById(Long id) throws PacienteNotFoundException {
-	        Paciente person = verifyIfExists(id);
+	        Paciente paciente = verifyIfExists(id);
 
-	        return pacienteMapper.toDTO(person);
+	        return pacienteMapper.map(paciente, PacienteDto.class);
 	    }
 
 	    public void delete(Long id) throws PacienteNotFoundException {
@@ -58,7 +59,7 @@ public class PacienteService {
 	    public MessageResponseDto updateById(Long id, PacienteDto pacienteDto) throws PacienteNotFoundException {
 	        verifyIfExists(id);
 
-	        Paciente personToUpdate = pacienteMapper.toModel(pacienteDto);
+	        Paciente personToUpdate =  pacienteMapper.map(pacienteDto, Paciente.class);
 
 	        Paciente updatedPerson = pacienteRepository.save(personToUpdate);
 	        return createMessageResponse(updatedPerson.getId(), "Updated person with ID ");

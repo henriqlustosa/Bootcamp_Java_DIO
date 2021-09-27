@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+
 import br.bootcamp.paciente.dto.request.PacienteDto;
 import br.bootcamp.paciente.entity.Paciente;
 
@@ -19,8 +20,9 @@ public interface PacienteMapper {
 
 	  
 	    @Mapping(target = "birthDate", source = "birthDate", dateFormat = "dd-MM-yyyy")
-	    Paciente toModel(PacienteDto personDTO);
+	    Paciente toModel(PacienteDto pacienteDTO);
 
-	    PacienteDto toDTO(Paciente person);
+	    PacienteDto toDTO(Paciente paciente);
 	
 }
+	

@@ -21,16 +21,18 @@ import br.bootcamp.paciente.dto.response.MessageResponseDto;
 
 import br.bootcamp.paciente.exception.PacienteNotFoundException;
 import br.bootcamp.paciente.service.PacienteService;
-import lombok.AllArgsConstructor;
+
+
 
 
 
 @RestController
-@RequestMapping("/paciente")
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("/pacientes")
 public class PacienteController {
 	
+	 @Autowired
 	 private PacienteService pacienteService;
+	
 	    @PostMapping
 	    @ResponseStatus(HttpStatus.CREATED)
 	    public MessageResponseDto createPerson(@RequestBody @Valid PacienteDto PacienteDto) {

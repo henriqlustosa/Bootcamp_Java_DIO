@@ -2,7 +2,6 @@ package br.bootcamp.paciente.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
 import br.bootcamp.paciente.entity.Paciente;
 
 

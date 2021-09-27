@@ -6,9 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -30,8 +34,9 @@ public class PacienteDto {
     @NotEmpty
     @CPF
     private String cpf;
-
-    private String birthDate;
+ 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate birthDate;
 
     @Valid
     @NotEmpty
