@@ -11,7 +11,7 @@ import br.bootcamp.paciente.dto.request.PacienteDto;
 import br.bootcamp.paciente.dto.response.MessageResponseDto;
 import br.bootcamp.paciente.entity.Paciente;
 import br.bootcamp.paciente.exception.PacienteNotFoundException;
-import br.bootcamp.paciente.mapper.PacienteMapper;
+
 import br.bootcamp.paciente.repository.PacienteRepository;
 
 
